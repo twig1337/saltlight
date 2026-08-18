@@ -1,0 +1,28 @@
+# Dependabot — Site OS default
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: America/Chicago
+    open-pull-requests-limit: 10
+    groups:
+      aws-amplify:
+        patterns:
+          - '@aws-amplify/*'
+          - 'aws-amplify'
+          - '@aws-sdk/*'
+      sentry:
+        patterns:
+          - '@sentry/*'
+      shadcn-radix:
+        patterns:
+          - '@radix-ui/*'
+      next-react:
+        patterns:
+          - 'next'
+          - 'react'
+          - 'react-dom'
