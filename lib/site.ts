@@ -9,9 +9,9 @@ export const siteConfig = {
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ??
     'SaltLight builds and cares for clear, reliable websites — without the agency markup.',
-  ownerName: process.env.NEXT_PUBLIC_OWNER_NAME ?? '',
-  ownerEmail: process.env.NEXT_PUBLIC_OWNER_EMAIL ?? '',
-  location: process.env.NEXT_PUBLIC_LOCATION ?? '',
+  ownerName: process.env.NEXT_PUBLIC_OWNER_NAME ?? 'Thomas Ellsworth',
+  ownerEmail: process.env.NEXT_PUBLIC_OWNER_EMAIL ?? 'taellsworth@gmail.com',
+  location: process.env.NEXT_PUBLIC_LOCATION ?? 'Raymore, Missouri',
   seoPosture: (process.env.NEXT_PUBLIC_SEO_POSTURE ?? 'baseline') as
     | 'private'
     | 'baseline'

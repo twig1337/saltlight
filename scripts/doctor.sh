@@ -61,15 +61,13 @@ else
   ok "browser AWS key config patterns"
 fi
 
-# .env committed (except example)
-mapfile -t ENV_FILES < <(find . -type f \( -name '.env' -o -name '.env.*' \) \
-  -not -name '.env.example' \
-  -not -path './node_modules/*' -not -path './.git/*' -print 2>/dev/null || true)
+# .env tracked by git (except example) — local .env.local is fine if gitignored
+mapfile -t ENV_FILES < <(git ls-files '.env' '.env.*' 2>/dev/null | grep -v '^\.env\.example$' || true)
 if ((${#ENV_FILES[@]})); then
-  bad "committed .env files"
+  bad "git-tracked .env files"
   printf '%s\n' "${ENV_FILES[@]}" | head -n 40
 else
-  ok "committed .env files"
+  ok "git-tracked .env files"
 fi
 
 if [[ -f package.json ]]; then
