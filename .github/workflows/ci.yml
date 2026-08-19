@@ -22,6 +22,14 @@ jobs:
 
       - run: npm ci
 
+      # amplify_outputs.json is gitignored (sandbox/prod specific). CI uses the
+      # committed example so Next can resolve the import at build time.
+      - name: Amplify outputs stub
+        run: |
+          if [ ! -f amplify_outputs.json ] && [ -f amplify_outputs.example.json ]; then
+            cp amplify_outputs.example.json amplify_outputs.json
+          fi
+
       - name: Doctor
         run: npm run doctor
 
