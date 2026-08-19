@@ -14,27 +14,307 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
-  --font-sans: var(--font-geist-sans);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-/* Salt + light: deep ink + warm amber */
+/* Luminous neutrals — warm paper, antique gold */
 :root {
-  --background: oklch(0.985 0.008 85);
-  --foreground: oklch(0.22 0.03 250);
-  --card: oklch(1 0.005 85);
-  --card-foreground: oklch(0.22 0.03 250);
-  --muted: oklch(0.955 0.012 85);
-  --muted-foreground: oklch(0.45 0.02 250);
-  --border: oklch(0.9 0.015 85);
-  --primary: oklch(0.32 0.06 250);
-  --primary-foreground: oklch(0.98 0.01 85);
-  --accent: oklch(0.72 0.14 75);
-  --accent-foreground: oklch(0.22 0.04 60);
-  --destructive: oklch(0.55 0.2 25);
+  --background: #fafaf9;
+  --foreground: #1c1917;
+  --ink: #1c1917;
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --muted: #f5f5f4;
+  --muted-foreground: #78716c;
+  --border: #e7e5e4;
+  --primary: #1c1917;
+  --primary-foreground: #fafaf9;
+  --accent: #c9a227;
+  --accent-foreground: #1c1917;
+  --gold: #c9a227;
+  --gold-soft: color-mix(in srgb, #c9a227 18%, transparent);
+  --destructive: #b91c1c;
 }
 
-body {
-  background: var(--background);
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: "ss01" on, "kern" on;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--gold) 35%, white);
+    color: var(--ink);
+  }
+}
+
+/* Soft paper field + distant gold bloom */
+.site-shell {
+  position: relative;
+  isolation: isolate;
+  min-height: 100%;
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 70% 45% at 100% 0%, color-mix(in srgb, var(--gold) 11%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 35% at 0% 80%, color-mix(in srgb, var(--gold) 5%, transparent), transparent 50%);
+}
+
+.site-shell::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: multiply;
+}
+
+.font-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-feature-settings: "ss01" on, "liga" on;
+  letter-spacing: -0.025em;
+}
+
+/* Light-ray motif echoing the logo */
+.light-ray {
+  width: min(36vw, 22rem);
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--gold) 80%, white),
+    color-mix(in srgb, var(--gold) 28%, transparent),
+    transparent
+  );
+  filter: blur(0.3px);
+}
+
+.light-ray::before,
+.light-ray::after {
+  content: "";
+  position: absolute;
+  inset: -12px 0;
+  background: inherit;
+  filter: blur(12px);
+  opacity: 0.5;
+}
+
+.light-ray::after {
+  inset: -24px 0;
+  filter: blur(24px);
+  opacity: 0.3;
+}
+
+/* Text-forward CTAs — Apple-like quiet links */
+.nav-link-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 500;
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  text-decoration: none;
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+.nav-link-lg::after {
+  content: "→";
+  color: var(--gold);
+  transition: transform 200ms ease;
+}
+
+.nav-link-lg:hover {
+  color: color-mix(in srgb, var(--ink) 75%, var(--gold));
+}
+
+.nav-link-lg:hover::after {
+  transform: translateX(3px);
+}
+
+.nav-link-lg-accent {
+  color: var(--ink);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--primary-foreground);
+  padding: 0.7rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  box-shadow: 0 10px 30px -18px color-mix(in srgb, var(--ink) 80%, transparent);
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--ink) 88%, var(--gold));
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  color: var(--foreground);
+  padding: 0.7rem 1.35rem;
+  font-size: 0.875rem;
+  font-weight: 550;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.btn-secondary:hover {
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--border));
+  background: var(--card);
+  transform: translateY(-1px);
+}
+
+.field-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  padding: 0.75rem 0.95rem;
+  font-size: 0.9375rem;
+  color: var(--foreground);
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.field-input:focus {
+  border-color: color-mix(in srgb, var(--gold) 55%, var(--border));
+  box-shadow: 0 0 0 3px var(--gold-soft);
+  background: var(--card);
+}
+
+/* Soft page transitions */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 280ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(root) {
+    animation-name: vt-fade-out;
+  }
+
+  ::view-transition-new(root) {
+    animation-name: vt-fade-in;
+  }
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* First-paint choreography */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ray-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0.45);
+    transform-origin: left center;
+  }
+  to {
+    opacity: 0.7;
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+.reveal {
+  animation: rise-in 750ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-d1 {
+  animation-delay: 70ms;
+}
+.reveal-d2 {
+  animation-delay: 140ms;
+}
+.reveal-d3 {
+  animation-delay: 210ms;
+}
+.reveal-d4 {
+  animation-delay: 280ms;
+}
+.reveal-d5 {
+  animation-delay: 350ms;
+}
+
+.ray-animate {
+  animation: ray-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .ray-animate,
+  .btn-primary,
+  .btn-secondary,
+  .nav-link-lg::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
 }

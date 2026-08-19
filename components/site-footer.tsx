@@ -1,29 +1,22 @@
-import Link from 'next/link';
+import { TransitionLink } from '@/components/transition-link';
 import { siteConfig } from '@/lib/site';
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-border bg-muted/50">
-      <div className="mx-auto max-w-5xl px-4 py-8 space-y-4 text-sm">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-medium text-foreground">{siteConfig.name}</p>
-          <nav className="flex flex-wrap gap-3" aria-label="Footer">
-            {siteConfig.nav.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-muted-foreground hover:text-foreground"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-        <p className="text-muted-foreground max-w-2xl">{siteConfig.tagline}</p>
-        <p className="text-muted-foreground">
-          © {new Date().getFullYear()} {siteConfig.name}
-          {siteConfig.location ? ` · ${siteConfig.location}` : ''}
-        </p>
+    <footer className="mt-auto shrink-0">
+      <div className="mx-auto flex max-w-3xl flex-col gap-4 px-6 py-10 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-8">
+        <p>© {new Date().getFullYear()} {siteConfig.name}</p>
+        <nav className="flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
+          {siteConfig.nav.map((l) => (
+            <TransitionLink
+              key={l.href}
+              href={l.href}
+              className="transition-colors duration-200 hover:text-foreground"
+            >
+              {l.label}
+            </TransitionLink>
+          ))}
+        </nav>
       </div>
     </footer>
   );

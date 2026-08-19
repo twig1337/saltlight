@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Fraunces, Karla } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { UmamiScript } from '@/components/umami';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
-const geist = Geist({
-  variable: '--font-geist-sans',
+const display = Fraunces({
+  variable: '--font-display',
+  subsets: ['latin'],
+  axes: ['SOFT', 'opsz'],
+});
+
+const body = Karla({
+  variable: '--font-body',
   subsets: ['latin'],
 });
 
@@ -29,12 +35,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className={`${display.variable} ${body.variable} h-full antialiased`}>
+      <body className="min-h-dvh font-sans">
         <UmamiScript />
-        <SiteHeader />
-        <div className="flex-1">{children}</div>
-        <SiteFooter />
+        <div className="site-shell flex min-h-dvh flex-col">
+          <SiteHeader />
+          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

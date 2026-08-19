@@ -33,7 +33,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-5">
       {/* honeypot */}
       <input
         type="text"
@@ -43,46 +43,29 @@ export function ContactForm() {
         className="hidden"
         aria-hidden="true"
       />
-      <div className="space-y-1">
-        <label htmlFor="name" className="text-sm font-medium">
+      <div className="space-y-2">
+        <label htmlFor="name" className="text-sm font-medium text-foreground">
           Name
         </label>
-        <input
-          id="name"
-          name="name"
-          required
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
-        />
+        <input id="name" name="name" required className="field-input" />
       </div>
-      <div className="space-y-1">
-        <label htmlFor="email" className="text-sm font-medium">
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-sm font-medium text-foreground">
           Email
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
-        />
+        <input id="email" name="email" type="email" required className="field-input" />
       </div>
-      <div className="space-y-1">
-        <label htmlFor="message" className="text-sm font-medium">
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-sm font-medium text-foreground">
           Message
         </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          className="w-full rounded-md border border-border bg-background px-3 py-2 text-sm"
-        />
+        <textarea id="message" name="message" required rows={5} className="field-input resize-y" />
       </div>
       <Button type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send message'}
       </Button>
       {status === 'ok' ? (
-        <p className="text-sm text-green-700" role="status">
+        <p className="text-sm text-[color-mix(in_srgb,#166534_85%,var(--ink))]" role="status">
           Message sent. We will respond when we can.
         </p>
       ) : null}

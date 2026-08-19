@@ -8,20 +8,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', ...props }, ref) => {
     const variants: Record<string, string> = {
-      default: 'bg-primary text-primary-foreground hover:opacity-90',
-      outline: 'border border-border bg-background hover:bg-muted',
-      ghost: 'hover:bg-muted',
+      default: 'btn-primary disabled:opacity-50 disabled:pointer-events-none',
+      outline: 'btn-secondary disabled:opacity-50 disabled:pointer-events-none',
+      ghost:
+        'inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-[color-mix(in_srgb,var(--gold)_10%,transparent)] hover:text-foreground transition-colors disabled:opacity-50',
     };
     return (
-      <button
-        ref={ref}
-        className={cn(
-          'inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50',
-          variants[variant],
-          className,
-        )}
-        {...props}
-      />
+      <button ref={ref} className={cn(variants[variant], className)} {...props} />
     );
   },
 );
