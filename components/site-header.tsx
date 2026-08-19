@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/site';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 bg-[color-mix(in_srgb,var(--background)_78%,transparent)] backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-[color-mix(in_srgb,var(--gold)_32%,var(--border))] bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-5 sm:px-8">
         <TransitionLink
           href="/"

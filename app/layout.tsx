@@ -38,9 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} h-full antialiased`}>
       <body className="min-h-dvh font-sans">
         <UmamiScript />
-        <div className="site-shell flex min-h-dvh flex-col">
+        <div className="site-shell grid min-h-dvh grid-rows-[auto_minmax(0,1fr)_auto]">
           <SiteHeader />
-          <div className="flex min-h-0 flex-1 flex-col">{children}</div>
+          <div className="flex min-h-0 flex-col">{children}</div>
           <SiteFooter />
         </div>
       </body>
