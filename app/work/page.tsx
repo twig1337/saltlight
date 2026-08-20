@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 
 const kinds = [
   {
-    title: 'Public sites',
-    body: 'Fast pages, clear writing, contact paths, and hosting that stays boring on purpose.',
+    title: 'Build for your needs',
+      body: 'A simple homepage, or a complex interactive e-commerce site — I\'ve got you covered.',
   },
   {
-    title: 'Sites with tools',
-    body: 'The public face plus quiet admin for content, documents, or members — without a heavy CMS bill.',
+    title: 'Managed without middlemen',
+    body: 'Administer your content, documents, or members. All without a heavy CMS bill.',
   },
   {
-    title: 'Ongoing care',
-    body: 'Updates, dependency hygiene, uptime eyes, and honest scope when something needs to change.',
+    title: 'Maintained without worry',
+    body: 'Hosting, updates, security, uptime (and everything else). I make sure the site runs so you don\'t have to think about it.',
   },
 ];
 
@@ -27,7 +27,7 @@ export default function WorkPage() {
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-20 sm:px-8 sm:py-28">
       <h1 className="font-display text-4xl tracking-tight text-ink sm:text-5xl reveal">Work</h1>
       <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground reveal reveal-d1">
-        Client names stay private unless they ask to be listed. The shape of the work is simple.
+        The shape of the work is simple:
       </p>
 
       <ul className="mt-16 space-y-0 divide-y divide-border/80 border-y border-border/80">

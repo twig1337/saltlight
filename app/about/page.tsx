@@ -15,25 +15,23 @@ export default function AboutPage() {
       <div className="mt-10 max-w-xl space-y-6 text-[1.1rem] leading-relaxed text-muted-foreground">
         <p className="reveal reveal-d1">
           {siteConfig.name} is a small practice for people who need a clear website and steady care —
-          without enterprise process for a simple job.
+          without enterprise process.
         </p>
         {siteConfig.ownerName ? (
           <p className="reveal reveal-d2">
-            Run by {siteConfig.ownerName}. Day job is engineering. This work is deliberate, not a
-            growth-at-all-costs agency.
+            I’m {siteConfig.ownerName}. I do this work one-on-one alongside my day job as a software architect. No team,
+            no agency overhead — just straightforward help for small businesses, charities, and local organizations that
+            want a website that actually works and doesn’t become a headache.
           </p>
         ) : null}
         <p className="reveal reveal-d3">
-          The name draws from Matthew 5:13–16 — salt of the earth, light of the world. The work
-          should be useful, honest, and a little brighter than neglected brochure sites.
-        </p>
-        <p className="reveal reveal-d4">
-          Stack defaults stay boring on purpose: modern Next.js, TypeScript, solid hosting, and
-          privacy-friendly analytics. No snowflake stack per project.
+          SaltLight comes from Matthew 5:13-16 — “salt of the earth, light of the world.” The goal is simple: useful,
+          honest sites that are a little brighter and more reliable than the neglected brochure pages a lot of
+          organizations end up with.
         </p>
       </div>
 
-      <p className="mt-14 reveal reveal-d5">
+      <p className="mt-14 reveal reveal-d4">
         <TransitionLink href="/contact" className="nav-link-lg nav-link-lg-accent">
           Get in touch
         </TransitionLink>
