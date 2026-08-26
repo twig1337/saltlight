@@ -18,7 +18,16 @@ Hosting: Amplify Hosting (WEB_COMPUTE). CI: GitHub Actions. Errors: Sentry (opti
 
 ```bash
 aws --profile personal <cmd>
+cd terraform
+# terraform.tfvars is gitignored — generate from SSM:
+#   ../site-os/scripts/write-tofu-tfvars.sh --dir terraform --app-id d5k5apws4oy45
+tofu init
+tofu plan     # uses personal-admin from local tfvars for IAM refresh
+tofu apply
 ```
+
+State: `s3://terraform-statz/saltlight/iam/terraform.tfstate`. App `d5k5apws4oy45`. Zone `Z02214842GQF969KCVQ9B`.
+
 
 ## Commands
 

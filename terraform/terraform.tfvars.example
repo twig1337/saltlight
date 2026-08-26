@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars (gitignored) or generate:
+#   ../site-os/scripts/write-tofu-tfvars.sh --dir terraform --app-id d5k5apws4oy45
+#
+# github_token         = ""
+# sentry_dsn           = ""
+# sentry_auth_token    = ""
+# aws_profile          = "personal-admin"

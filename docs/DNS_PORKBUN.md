@@ -1,7 +1,9 @@
 # saltlight.dev — Porkbun NS cutover (split-brain DNS)
 
 **Registrar:** Porkbun (keep domain here)  
-**DNS:** Route 53 hosted zone `Z02214842GQF969KCVQ9B` (Amplify manages records)
+**DNS:** Route 53 hosted zone `Z02214842GQF969KCVQ9B` (OpenTofu `terraform/`; Amplify writes ACM/apex/www records)
+
+Zone + Amplify domain association are imported into OpenTofu. Do not recreate in the console.
 
 ## One-time at Porkbun
 
