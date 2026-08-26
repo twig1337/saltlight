@@ -13,6 +13,8 @@
 
 Next.js App Router + TypeScript + Tailwind. No Amplify Gen 2 backend (contact via SES API route).
 Hosting: Amplify Hosting (WEB_COMPUTE). CI: GitHub Actions. Errors: Sentry (optional until DSN set). Analytics: Umami.
+No Amplify Data/Cognito. Content lives in git — that is the backup. CMS backup rails do not apply.
+
 
 ## AWS
 
