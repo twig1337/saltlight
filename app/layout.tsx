@@ -22,11 +22,11 @@ export const metadata: Metadata = {
     default: 'SaltLight',
     template: '%s · SaltLight',
   },
-  description: 'Clear, reliable websites. Built carefully. Without the agency markup.',
+  description: 'Clear, reliable websites. Built carefully - without the agency markup.',
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     title: 'SaltLight',
-    description: 'Clear, reliable websites. Built carefully. Without the agency markup.',
+    description: 'Clear, reliable websites. Built carefully - without the agency markup.',
     url: siteConfig.url,
     siteName: 'SaltLight',
     type: 'website',
