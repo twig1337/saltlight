@@ -1,38 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-
-type Mote = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  r: number;
-  life: number;
-  maxLife: number;
-  glow: number;
-  drift: number;
-  wobble: number;
-  wobbleSpeed: number;
-};
-
-function spawn(w: number, h: number): Mote {
-  const maxLife = 3.6 + Math.random() * 4.4;
-  return {
-    // Dust motes in the crystal's warm light
-    x: w * (0.12 + Math.random() * 0.7),
-    y: h * (0.45 + Math.random() * 0.5),
-    vx: (Math.random() - 0.45) * 14,
-    vy: -(8 + Math.random() * 22),
-    r: 0.22 + Math.random() * 0.55,
-    life: 0,
-    maxLife,
-    glow: 0.28 + Math.random() * 0.45,
-    drift: (Math.random() - 0.5) * 12,
-    wobble: Math.random() * Math.PI * 2,
-    wobbleSpeed: 0.8 + Math.random() * 1.8,
-  };
-}
+import { type Mote, type Origin, moteAlpha, spawn } from '@/lib/motes';
 
 export function MoteField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,6 +21,19 @@ export function MoteField() {
     let dpr = 1;
     const motes: Mote[] = [];
     let spawnAcc = 0;
+    const origin: Origin = { x: 0, y: 0, w: 0, h: 0 };
+
+    const readOrigin = () => {
+      const parent = canvas.parentElement;
+      const lamp = parent?.querySelector('[data-mote-origin]');
+      if (!parent || !(lamp instanceof HTMLElement)) return;
+      const pr = parent.getBoundingClientRect();
+      const lr = lamp.getBoundingClientRect();
+      origin.x = lr.left - pr.left;
+      origin.y = lr.top - pr.top;
+      origin.w = lr.width;
+      origin.h = lr.height;
+    };
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -65,20 +47,29 @@ export function MoteField() {
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      readOrigin();
+    };
+
+    const seed = () => {
+      if (motes.length > 0) return;
+      for (let i = 0; i < 18; i++) {
+        const m = spawn(w, h, origin);
+        m.life = Math.random() * m.maxLife * 0.4;
+        m.x += m.vx * m.life * 0.35;
+        m.y += m.vy * m.life * 0.35;
+        motes.push(m);
+      }
     };
 
     const ro = new ResizeObserver(resize);
     if (canvas.parentElement) ro.observe(canvas.parentElement);
+    const lamp = canvas.parentElement?.querySelector('[data-mote-origin]');
+    if (lamp) ro.observe(lamp);
     resize();
-    requestAnimationFrame(resize);
-
-    for (let i = 0; i < 18; i++) {
-      const m = spawn(w, h);
-      m.life = Math.random() * m.maxLife * 0.85;
-      m.x += m.vx * m.life * 0.35;
-      m.y += m.vy * m.life * 0.35;
-      motes.push(m);
-    }
+    requestAnimationFrame(() => {
+      resize();
+      seed();
+    });
 
     const tick = (now: number) => {
       if (!running) return;
@@ -89,7 +80,7 @@ export function MoteField() {
       const target = Math.round(Math.min(55, Math.max(18, (w * h) / 28000)));
       spawnAcc += dt;
       while (motes.length < target && spawnAcc > 0.04) {
-        motes.push(spawn(w, h));
+        motes.push(spawn(w, h, origin));
         spawnAcc -= 0.04 + Math.random() * 0.05;
       }
       if (motes.length >= target) spawnAcc = Math.min(spawnAcc, 0.2);
@@ -105,13 +96,7 @@ export function MoteField() {
         }
 
         const t = m.life / m.maxLife;
-        // Quick birth, long glow, short hot burn-out
-        let alpha: number;
-        if (t < 0.08) alpha = t / 0.08;
-        else if (t < 0.65) alpha = 1;
-        else if (t < 0.82) alpha = 1 + ((t - 0.65) / 0.17) * 0.7;
-        else alpha = Math.max(0, 1 - (t - 0.82) / 0.18);
-        alpha *= 0.28 * m.glow;
+        const { halo: haloAlpha, core: coreAlpha } = moteAlpha(t, m.glow);
 
         m.wobble += m.wobbleSpeed * dt;
         m.vx += (m.drift + Math.sin(m.wobble) * 14) * dt * 0.2;
@@ -132,22 +117,22 @@ export function MoteField() {
         ctx.globalCompositeOperation = 'lighter';
 
         // Soft halo — small, ember-like
-        ctx.globalAlpha = Math.min(0.55, alpha * 0.85);
-        const halo = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, radius * 4.5);
-        halo.addColorStop(0, 'rgba(255, 228, 150, 0.9)');
-        halo.addColorStop(0.35, 'rgba(201, 162, 39, 0.45)');
+        ctx.globalAlpha = haloAlpha;
+        const halo = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, radius * 5.5);
+        halo.addColorStop(0, 'rgba(255, 228, 150, 0.95)');
+        halo.addColorStop(0.35, 'rgba(201, 162, 39, 0.55)');
         halo.addColorStop(1, 'rgba(201, 162, 39, 0)');
         ctx.fillStyle = halo;
         ctx.beginPath();
-        ctx.arc(m.x, m.y, radius * 4.5, 0, Math.PI * 2);
+        ctx.arc(m.x, m.y, radius * 5.5, 0, Math.PI * 2);
         ctx.fill();
 
         // Hot pin core
-        ctx.globalAlpha = Math.min(0.9, alpha * 1.35);
+        ctx.globalAlpha = coreAlpha;
         ctx.fillStyle =
           t > 0.68 && t < 0.84 ? 'rgba(255, 248, 220, 1)' : 'rgba(232, 196, 90, 0.95)';
         ctx.beginPath();
-        ctx.arc(m.x, m.y, Math.max(0.35, radius * 0.7), 0, Math.PI * 2);
+        ctx.arc(m.x, m.y, Math.max(0.8, radius * 0.75), 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
@@ -182,7 +167,7 @@ export function MoteField() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+      className="pointer-events-none absolute inset-0 z-[2] h-full w-full"
       aria-hidden
     />
   );

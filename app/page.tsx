@@ -5,20 +5,21 @@ import { TransitionLink } from '@/components/transition-link';
 
 export default function HomePage() {
   return (
-    <main className="relative flex min-h-full flex-1 flex-col overflow-hidden">
+    <main className="relative flex min-h-full flex-1 flex-col [container-type:size]">
+      <Image
+        src="/saltlight-icon.png"
+        alt=""
+        width={378}
+        height={677}
+        priority
+        unoptimized
+        data-mote-origin
+        className="emblem-animate pointer-events-none absolute -bottom-8 left-0 z-[1] aspect-[378/677] h-[min(calc(100cqh+2rem),calc(100cqw*677/378))] w-auto max-w-full object-contain object-left-bottom mix-blend-multiply"
+      />
       <MoteField />
-      <section className="relative z-10 flex flex-1 flex-col justify-center px-6 py-24 sm:px-8 sm:py-32">
-        <div className="relative mx-auto w-full max-w-3xl">
-          <Image
-            src="/saltlight-icon.png"
-            alt=""
-            width={378}
-            height={677}
-            priority
-            unoptimized
-            className="emblem-animate h-24 w-auto sm:h-[6.75rem]"
-          />
-          <h1 className="plate font-display mt-8 text-[clamp(2.85rem,8vw,5.65rem)] leading-[0.95] text-ink reveal">
+      <section className="relative z-10 flex flex-1 flex-col justify-center px-6 py-16 sm:px-8 sm:py-24 md:pl-[min(38vw,22rem)] lg:pl-[clamp(20rem,34vw,38rem)]">
+        <div className="hero-copy relative w-full max-w-xl sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
+          <h1 className="plate font-display text-[clamp(2.85rem,8vw,5.65rem)] leading-[0.95] text-ink reveal">
             I make websites.
           </h1>
           <Ornament className="mt-10 reveal reveal-d1" />

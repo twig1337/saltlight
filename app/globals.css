@@ -178,6 +178,21 @@
     0 0 14px 8px color-mix(in srgb, var(--background) 70%, transparent);
 }
 
+.hero-copy {
+  padding: 0.85rem 0.7rem;
+  background-color: color-mix(in srgb, var(--background) 80%, transparent);
+  box-shadow: 0 0 44px 30px color-mix(in srgb, var(--background) 80%, transparent);
+  border-radius: 0.2rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-copy {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
 /* Text-forward CTAs */
 .nav-link-lg {
   display: inline-flex;
@@ -362,6 +377,7 @@
 }
 
 .emblem-animate {
+  transform-origin: left bottom;
   animation: glow-in 1.05s cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
 }
 
