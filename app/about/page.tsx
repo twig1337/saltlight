@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Ornament } from '@/components/ornament';
 import { TransitionLink } from '@/components/transition-link';
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-20 sm:px-8 sm:py-28">
-      <h1 className="font-display text-4xl tracking-tight text-ink sm:text-5xl reveal">About</h1>
+      <h1 className="font-display text-4xl text-ink sm:text-5xl reveal">About</h1>
+      <Ornament className="mt-6 reveal reveal-d1" />
 
       <div className="mt-10 max-w-xl space-y-6 text-[1.1rem] leading-relaxed text-muted-foreground">
         <p className="reveal reveal-d1">

@@ -9,7 +9,7 @@ export function SiteNav({ className }: { className?: string }) {
   const pathname = usePathname();
 
   return (
-    <nav className={cn('flex items-center gap-1 sm:gap-2', className)} aria-label="Main">
+    <nav className={cn('flex items-center gap-2 sm:gap-5', className)} aria-label="Main">
       {siteConfig.nav.map((l) => {
         const active = pathname === l.href || pathname.startsWith(`${l.href}/`);
         return (
@@ -17,8 +17,8 @@ export function SiteNav({ className }: { className?: string }) {
             key={l.href}
             href={l.href}
             className={cn(
-              'plate plate-tight relative text-sm transition-colors duration-200',
-              active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground',
+              'nav-link relative px-1.5 py-1 text-[1.15rem] leading-none transition-colors duration-200 sm:text-[1.25rem]',
+              active ? 'text-ink' : 'text-ink/70 hover:text-ink',
             )}
             aria-current={active ? 'page' : undefined}
           >
@@ -26,7 +26,7 @@ export function SiteNav({ className }: { className?: string }) {
             <span
               aria-hidden
               className={cn(
-                'absolute inset-x-3 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300 ease-out',
+                'absolute inset-x-1.5 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300 ease-out',
                 active ? 'scale-x-100' : 'scale-x-0',
               )}
             />

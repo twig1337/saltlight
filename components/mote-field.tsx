@@ -17,20 +17,20 @@ type Mote = {
 };
 
 function spawn(w: number, h: number): Mote {
-  const maxLife = 2.8 + Math.random() * 3.8;
+  const maxLife = 3.6 + Math.random() * 4.4;
   return {
-    // Embers lift from a wide bottom-left bed of coals
-    x: -12 + Math.random() * w * 0.55,
-    y: h * (0.72 + Math.random() * 0.38),
-    vx: 6 + Math.random() * 22,
-    vy: -(28 + Math.random() * 55),
-    r: 0.28 + Math.random() * 0.7,
+    // Dust motes in the crystal's warm light
+    x: w * (0.12 + Math.random() * 0.7),
+    y: h * (0.45 + Math.random() * 0.5),
+    vx: (Math.random() - 0.45) * 14,
+    vy: -(8 + Math.random() * 22),
+    r: 0.22 + Math.random() * 0.55,
     life: 0,
     maxLife,
-    glow: 0.4 + Math.random() * 0.6,
-    drift: (Math.random() - 0.5) * 18,
+    glow: 0.28 + Math.random() * 0.45,
+    drift: (Math.random() - 0.5) * 12,
     wobble: Math.random() * Math.PI * 2,
-    wobbleSpeed: 1.2 + Math.random() * 2.4,
+    wobbleSpeed: 0.8 + Math.random() * 1.8,
   };
 }
 
@@ -72,7 +72,7 @@ export function MoteField() {
     resize();
     requestAnimationFrame(resize);
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 18; i++) {
       const m = spawn(w, h);
       m.life = Math.random() * m.maxLife * 0.85;
       m.x += m.vx * m.life * 0.35;
@@ -85,12 +85,12 @@ export function MoteField() {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
 
-      // Dense ember bed
-      const target = Math.round(Math.min(140, Math.max(55, (w * h) / 11000)));
+      // Sparse gold dust
+      const target = Math.round(Math.min(55, Math.max(18, (w * h) / 28000)));
       spawnAcc += dt;
-      while (motes.length < target && spawnAcc > 0.02) {
+      while (motes.length < target && spawnAcc > 0.04) {
         motes.push(spawn(w, h));
-        spawnAcc -= 0.02 + Math.random() * 0.03;
+        spawnAcc -= 0.04 + Math.random() * 0.05;
       }
       if (motes.length >= target) spawnAcc = Math.min(spawnAcc, 0.2);
 
@@ -111,7 +111,7 @@ export function MoteField() {
         else if (t < 0.65) alpha = 1;
         else if (t < 0.82) alpha = 1 + ((t - 0.65) / 0.17) * 0.7;
         else alpha = Math.max(0, 1 - (t - 0.82) / 0.18);
-        alpha *= 0.42 * m.glow;
+        alpha *= 0.28 * m.glow;
 
         m.wobble += m.wobbleSpeed * dt;
         m.vx += (m.drift + Math.sin(m.wobble) * 14) * dt * 0.2;

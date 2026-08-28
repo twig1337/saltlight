@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactForm } from './contact-form';
+import { Ornament } from '@/components/ornament';
 import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="mx-auto w-full max-w-xl flex-1 px-6 py-20 sm:px-8 sm:py-28">
-      <h1 className="font-display text-4xl tracking-tight text-ink sm:text-5xl reveal">Contact</h1>
+      <h1 className="font-display text-4xl text-ink sm:text-5xl reveal">Contact</h1>
+      <Ornament className="mt-6 reveal reveal-d1" />
       <p className="mt-6 text-lg leading-relaxed text-muted-foreground reveal reveal-d1">
         Tell me what you need. I usually reply within a few business days.
       </p>

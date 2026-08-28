@@ -1,20 +1,21 @@
 import type { Metadata } from 'next';
-import { Fraunces, Karla } from 'next/font/google';
+import { Cormorant_Garamond, Source_Serif_4 } from 'next/font/google';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { UmamiScript } from '@/components/umami';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
-const display = Fraunces({
+const display = Cormorant_Garamond({
   variable: '--font-display',
   subsets: ['latin'],
-  axes: ['SOFT', 'opsz'],
+  weight: ['400', '500', '600', '700'],
 });
 
-const body = Karla({
+const body = Source_Serif_4({
   variable: '--font-body',
   subsets: ['latin'],
+  axes: ['opsz'],
 });
 
 export const metadata: Metadata = {

@@ -44,19 +44,19 @@ export function ContactForm() {
         aria-hidden="true"
       />
       <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-medium text-foreground">
+        <label htmlFor="name" className="font-display text-sm tracking-wide text-foreground">
           Name
         </label>
         <input id="name" name="name" required className="field-input" />
       </div>
       <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-medium text-foreground">
+        <label htmlFor="email" className="font-display text-sm tracking-wide text-foreground">
           Email
         </label>
         <input id="email" name="email" type="email" required className="field-input" />
       </div>
       <div className="space-y-2">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
+        <label htmlFor="message" className="font-display text-sm tracking-wide text-foreground">
           Message
         </label>
         <textarea id="message" name="message" required rows={5} className="field-input resize-y" />

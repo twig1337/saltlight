@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Ornament } from '@/components/ornament';
 import { TransitionLink } from '@/components/transition-link';
 
 export const metadata: Metadata = {
@@ -24,12 +25,13 @@ const kinds = [
 export default function WorkPage() {
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-20 sm:px-8 sm:py-28">
-      <h1 className="font-display text-4xl tracking-tight text-ink sm:text-5xl reveal">Work</h1>
-      <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground reveal reveal-d1">
+      <h1 className="font-display text-4xl text-ink sm:text-5xl reveal">Work</h1>
+      <Ornament className="mt-6 reveal reveal-d1" />
+      <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground reveal reveal-d1">
         The shape of the work is simple:
       </p>
 
-      <ul className="mt-16 space-y-0 divide-y divide-border/80 border-y border-border/80">
+      <ul className="mt-16 space-y-0 divide-y divide-gold/30 border-y border-gold/30">
         {kinds.map((k, i) => (
           <li key={k.title} className={`py-8 reveal reveal-d${Math.min(i + 2, 5)}`}>
             <h2 className="font-display text-2xl text-ink sm:text-3xl">{k.title}</h2>

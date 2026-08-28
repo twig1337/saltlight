@@ -4,21 +4,30 @@ import { SiteNav } from '@/components/site-nav';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[color-mix(in_srgb,var(--gold)_32%,var(--border))] bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-5 sm:px-8">
+    <header className="sticky top-0 z-40 border-b border-gold/25 bg-background/90">
+      <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-4 sm:px-8">
         <TransitionLink
           href="/"
-          className="group inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="group inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="SaltLight home"
         >
           <Image
-            src="/logo.png"
-            alt="SaltLight"
-            width={168}
-            height={36}
+            src="/saltlight-icon.png"
+            alt=""
+            width={378}
+            height={677}
             priority
             unoptimized
-            className="h-7 w-auto transition-opacity duration-200 group-hover:opacity-80 sm:h-8"
+            className="h-9 w-auto transition-opacity duration-200 group-hover:opacity-80 sm:h-10"
+          />
+          <Image
+            src="/saltlight-wordmark.png"
+            alt="SaltLight"
+            width={683}
+            height={215}
+            priority
+            unoptimized
+            className="h-6 w-auto transition-opacity duration-200 group-hover:opacity-80 sm:h-7"
           />
         </TransitionLink>
         <SiteNav />
