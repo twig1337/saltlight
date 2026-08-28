@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Contact ${siteConfig.name}.`,
+  description: 'Contact SaltLight.',
 };
 
 export default function ContactPage() {

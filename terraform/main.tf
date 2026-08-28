@@ -104,14 +104,8 @@ resource "aws_amplify_app" "saltlight" {
   compute_role_arn     = aws_iam_role.amplify_compute.arn
 
   environment_variables = {
-    NEXT_PUBLIC_SITE_NAME          = "SaltLight"
     NEXT_PUBLIC_SITE_URL           = "https://${var.domain_name}"
-    NEXT_PUBLIC_SITE_TAGLINE       = "Practical websites for churches, civic groups, and small businesses."
-    NEXT_PUBLIC_SITE_DESCRIPTION   = "SaltLight builds and cares for clear, reliable websites - without the agency markup."
-    NEXT_PUBLIC_OWNER_NAME         = "Thomas Ellsworth"
     NEXT_PUBLIC_OWNER_EMAIL        = "taellsworth@gmail.com"
-    NEXT_PUBLIC_LOCATION           = "Raymore, Missouri"
-    NEXT_PUBLIC_SEO_POSTURE        = "baseline"
     NEXT_PUBLIC_SENTRY_DSN         = var.sentry_dsn
     NEXT_PUBLIC_SENTRY_ENVIRONMENT = "production"
     NEXT_PUBLIC_SENTRY_RELEASE     = "$AWS_COMMIT_ID"
@@ -161,14 +155,8 @@ resource "aws_amplify_branch" "main" {
   enable_auto_build = true
 
   environment_variables = {
-    NEXT_PUBLIC_SITE_NAME          = "SaltLight"
     NEXT_PUBLIC_SITE_URL           = "https://${var.domain_name}"
-    NEXT_PUBLIC_SITE_TAGLINE       = "Practical websites for churches, civic groups, and small businesses."
-    NEXT_PUBLIC_SITE_DESCRIPTION   = "SaltLight builds and cares for clear, reliable websites - without the agency markup."
-    NEXT_PUBLIC_OWNER_NAME         = "Thomas Ellsworth"
     NEXT_PUBLIC_OWNER_EMAIL        = "taellsworth@gmail.com"
-    NEXT_PUBLIC_LOCATION           = "Raymore, Missouri"
-    NEXT_PUBLIC_SEO_POSTURE        = "baseline"
     NEXT_PUBLIC_SENTRY_ENVIRONMENT = "production"
     NEXT_PUBLIC_UMAMI_URL          = "https://umami.64.181.205.247.sslip.io"
     NEXT_PUBLIC_UMAMI_WEBSITE_ID   = "7960cd49-7365-46af-8627-52b9eb099fa2"

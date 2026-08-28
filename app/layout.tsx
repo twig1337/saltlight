@@ -19,16 +19,16 @@ const body = Karla({
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s · ${siteConfig.name}`,
+    default: 'SaltLight',
+    template: '%s · SaltLight',
   },
-  description: siteConfig.description,
+  description: 'Clear, reliable websites. Built carefully. Without the agency markup.',
   metadataBase: new URL(siteConfig.url),
   openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: 'SaltLight',
+    description: 'Clear, reliable websites. Built carefully. Without the agency markup.',
     url: siteConfig.url,
-    siteName: siteConfig.name,
+    siteName: 'SaltLight',
     type: 'website',
   },
 };

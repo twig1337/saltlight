@@ -1,6 +1,5 @@
 import { MoteField } from '@/components/mote-field';
 import { TransitionLink } from '@/components/transition-link';
-import { siteConfig } from '@/lib/site';
 
 export default function HomePage() {
   return (
@@ -16,7 +15,7 @@ export default function HomePage() {
             I make websites.
           </h1>
           <p className="plate mt-8 max-w-md text-lg leading-relaxed text-muted-foreground reveal reveal-d2 sm:text-xl">
-            {siteConfig.description}
+            Clear, reliable websites. Built carefully. Without the agency markup.
           </p>
 
           <div className="mt-14 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-3 reveal reveal-d3">

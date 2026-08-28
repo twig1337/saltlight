@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { TransitionLink } from '@/components/transition-link';
 import { SiteNav } from '@/components/site-nav';
-import { siteConfig } from '@/lib/site';
 
 export function SiteHeader() {
   return (
@@ -10,11 +9,11 @@ export function SiteHeader() {
         <TransitionLink
           href="/"
           className="group inline-flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          aria-label={`${siteConfig.name} home`}
+          aria-label="SaltLight home"
         >
           <Image
             src="/logo.png"
-            alt={siteConfig.name}
+            alt="SaltLight"
             width={168}
             height={36}
             priority

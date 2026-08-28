@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { TransitionLink } from '@/components/transition-link';
-import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: `About ${siteConfig.name}.`,
+  description: 'About SaltLight.',
 };
 
 export default function AboutPage() {
@@ -14,16 +13,14 @@ export default function AboutPage() {
 
       <div className="mt-10 max-w-xl space-y-6 text-[1.1rem] leading-relaxed text-muted-foreground">
         <p className="reveal reveal-d1">
-          {siteConfig.name} is a small practice for people who need a clear website and steady care —
+          SaltLight is a small practice for people who need a clear website and steady care —
           without enterprise process.
         </p>
-        {siteConfig.ownerName ? (
-          <p className="reveal reveal-d2">
-            I’m {siteConfig.ownerName}. I do this work one-on-one alongside my day job as a software architect. No team,
-            no agency overhead — just straightforward help for small businesses, charities, and local organizations that
-            want a website that actually works and doesn’t become a headache.
-          </p>
-        ) : null}
+        <p className="reveal reveal-d2">
+          I’m Thomas Ellsworth. I do this work one-on-one alongside my day job as a software architect. No team,
+          no agency overhead — just straightforward help for small businesses, charities, and local organizations that
+          want a website that actually works and doesn’t become a headache.
+        </p>
         <p className="reveal reveal-d3">
           SaltLight comes from Matthew 5:13-16 — “salt of the earth, light of the world.” The goal is simple: useful,
           honest sites that are a little brighter and more reliable than the neglected brochure pages a lot of

@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { TransitionLink } from '@/components/transition-link';
-import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Work',
-  description: `What ${siteConfig.name} builds.`,
+  description: 'What SaltLight builds.',
 };
 
 const kinds = [
