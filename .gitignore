@@ -22,3 +22,4 @@ tfplan
 .DS_Store
 coverage/
 .idea/
+next-env.d.ts
