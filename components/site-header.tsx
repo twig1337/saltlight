@@ -4,11 +4,11 @@ import { SiteNav } from '@/components/site-nav';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-gold/40 bg-ink text-background">
+    <header className="sticky top-0 z-40 border-b border-gold/25 bg-background/90">
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-6 px-6 py-4 sm:px-8">
         <TransitionLink
           href="/"
-          className="group inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          className="group inline-flex items-center gap-2.5 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="SaltLight home"
         >
           <Image

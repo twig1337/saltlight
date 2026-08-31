@@ -18,7 +18,7 @@ export function SiteNav({ className }: { className?: string }) {
             href={l.href}
             className={cn(
               'nav-link relative px-1.5 py-1 text-[1.15rem] leading-none transition-colors duration-200 sm:text-[1.25rem]',
-              active ? 'text-background' : 'text-background/65 hover:text-background',
+              active ? 'text-ink' : 'text-ink/70 hover:text-ink',
             )}
             aria-current={active ? 'page' : undefined}
           >
