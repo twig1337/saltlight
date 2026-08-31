@@ -157,7 +157,72 @@
   box-shadow: 0 0 7px color-mix(in srgb, var(--gold) 50%, transparent);
 }
 
-/* Paper plates — motes pass behind readable surfaces */
+/* Holy gold radiance at the page floor and under the nav */
+.radiance {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 24%;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 125% 90% at 50% 100%,
+      color-mix(in srgb, var(--gold) 28%, transparent),
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 72% 62% at 50% 100%,
+      color-mix(in srgb, var(--gold) 22%, white 8%),
+      transparent 70%
+    );
+  animation: radiance-breathe 10s ease-in-out infinite;
+}
+
+.radiance-crown {
+  bottom: auto;
+  top: 0;
+  transform: scaleY(-1);
+}
+
+.radiance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  background: radial-gradient(
+    ellipse 38% 58% at 50% 112%,
+    color-mix(in srgb, var(--gold) 42%, white 16%),
+    color-mix(in srgb, var(--gold) 14%, transparent) 42%,
+    transparent 72%
+  );
+  animation: radiance-core 12s ease-in-out infinite;
+}
+
+@keyframes radiance-breathe {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes radiance-core {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94, 0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04, 1.08);
+  }
+}
+
+/* Paper plates — copy stays readable over the floor glow */
 .plate {
   position: relative;
   z-index: 1;
@@ -351,7 +416,6 @@
     transform: translateY(8px) scale(0.96);
   }
   to {
-    opacity: 1;
     transform: translateY(0) scale(1);
   }
 }
@@ -389,6 +453,16 @@
   .nav-link-lg::after {
     animation: none !important;
     transition: none !important;
+    transform: none !important;
+  }
+
+  .radiance,
+  .radiance::before {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .radiance::before {
     transform: none !important;
   }
 

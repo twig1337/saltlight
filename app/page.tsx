@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { MoteField } from '@/components/mote-field';
 import { Ornament } from '@/components/ornament';
 import { TransitionLink } from '@/components/transition-link';
 
@@ -13,12 +12,12 @@ export default function HomePage() {
         height={677}
         priority
         unoptimized
-        data-mote-origin
-        className="emblem-animate pointer-events-none absolute -bottom-8 left-0 z-[1] aspect-[378/677] h-[min(calc(100cqh+2rem),calc(100cqw*677/378))] w-auto max-w-full object-contain object-left-bottom mix-blend-multiply"
+        className="emblem-animate pointer-events-none absolute bottom-[11%] left-0 z-[1] aspect-[378/677] h-[min(64cqh,calc(52cqw*677/378))] w-auto max-w-full object-contain object-left-bottom mix-blend-multiply opacity-40"
       />
-      <MoteField />
-      <section className="relative z-10 flex flex-1 flex-col justify-center px-6 py-16 sm:px-8 sm:py-24 md:pl-[min(38vw,22rem)] lg:pl-[clamp(20rem,34vw,38rem)]">
-        <div className="hero-copy relative w-full max-w-xl sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
+      <div className="radiance radiance-crown" aria-hidden />
+      <div className="radiance" aria-hidden />
+      <section className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-16 text-center sm:px-8 sm:py-24">
+        <div className="hero-copy relative flex w-full max-w-xl flex-col items-center sm:max-w-lg lg:max-w-xl xl:max-w-2xl">
           <h1 className="plate font-display text-[clamp(2.85rem,8vw,5.65rem)] leading-[0.95] text-ink reveal">
             I make websites.
           </h1>
@@ -27,7 +26,7 @@ export default function HomePage() {
             Clear, reliable websites. Built carefully - without the agency markup.
           </p>
 
-          <div className="mt-14 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-3 reveal reveal-d3">
+          <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-3 reveal reveal-d3">
             <TransitionLink href="/work" className="nav-link-lg plate plate-tight">
               Work
             </TransitionLink>
